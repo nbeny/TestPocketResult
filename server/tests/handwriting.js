@@ -7,11 +7,8 @@ describe('GET /api/handwriting', function() {
 
     request(app)
       .get('/api/handwriting')
-      .field('Content-Type', 'application/json')
-      .end((err, res) => {
-        res.should.have.status(200);
-        done();
-      });
+      .expect('Content-Type', 'application/json; charset=utf-8')
+      .expect(200, done);
   });
 
   it('respond with code 200 & image/png', function(done) {
@@ -19,10 +16,7 @@ describe('GET /api/handwriting', function() {
 
     request(app)
       .get('/api/handwriting')
-      .field('Content-Type', 'image/png')
-      .end((err, res) => {
-        res.should.have.status(200);
-        done();
-      });
+      .expect('Content-Type', 'image/png')
+      .expect(200, done);
   });
 });

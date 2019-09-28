@@ -88,7 +88,7 @@ const get_render_png = async (req, res) => {
     line_spacing_variance,
     word_spacing_variance,
     random_seed
-  } = req.body;
+  } = req.query;
 
   if (!handwriting_id || !text) {
     return res.status(400).json({
@@ -185,13 +185,22 @@ const get_render_png = async (req, res) => {
     },
     async function(error, response) {
       try {
-        res.status(200).send(response.body);
-      } catch (err) {
-        if (error && error.errors && error.errors[0] && error.errors[0].field) {
-          return res.status(400).json(error);
-        } else {
-          return res.status(429).json(error);
+        const content = global._.split(
+          response.caseless.dict['content-type'],
+          ';'
+        );
+        if (content[0] === 'image/png') {
+          return res.status(200).send(response.body);
+        } else if (content[0] === 'application/json') {
+          const json = JSON.parse(response.body);
+          if (json.errors && json.errors[0] && json.errors[0].field) {
+            return res.status(400).json(json);
+          } else {
+            return res.status(429).json(json);
+          }
         }
+      } catch (err) {
+        return res.status(500).json(error);
       }
     }
   );
@@ -306,13 +315,23 @@ const get_render_pdf = async (req, res) => {
     },
     async function(error, response) {
       try {
-        res.status(200).send(response.body);
-      } catch (err) {
-        if (error && error.errors && error.errors[0] && error.errors[0].field) {
-          return res.status(400).json(error);
-        } else {
-          return res.status(429).json(error);
+        console.log(response.caseless.dict['content-type']);
+        const content = global._.split(
+          response.caseless.dict['content-type'],
+          ';'
+        );
+        if (content[0] === 'image/png') {
+          return res.status(200).send(response.body);
+        } else if (content[0] === 'application/json') {
+          const json = JSON.parse(response.body);
+          if (json.errors && json.errors[0] && json.errors[0].field) {
+            return res.status(400).json(json);
+          } else {
+            return res.status(429).json(json);
+          }
         }
+      } catch (err) {
+        return res.status(500).json(error);
       }
     }
   );
