@@ -1,0 +1,40 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "concurrently": "^4.1.2",
+    "config": "^3.2.2",
+    "cors": "^2.8.5",
+    "env": "0.0.2",
+    "express": "^4.17.1",
+    "lodash": "^4.17.15",
+    "morgan": "^1.9.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.2",
+    "eslint": "^6.4.0",
+    "mocha": "^6.2.0",
+    "supertest": "^4.0.2"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "sh scripts/tests.sh",
+    "lint": "sh scripts/lint.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nbeny/TestPocketResult.git"
+  },
+  "author": "nbeny",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nbeny/TestPocketResult/issues"
+  },
+  "homepage": "https://github.com/nbeny/TestPocketResult#readme"
+}

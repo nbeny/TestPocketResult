@@ -7,3 +7,5 @@ const index = require('../controllers/index');
 // @desc    Index api
 // @access  Public
 router.get('/', index.get_index);
+
+module.exports = router;

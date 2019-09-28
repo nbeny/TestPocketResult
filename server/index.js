@@ -1,4 +1,3 @@
-const path = require('path');
 const cors = require('cors');
 const logger = require('morgan');
 const express = require('express');
@@ -10,17 +9,11 @@ const app = express();
 // Set global variable
 global._ = _;
 
-//  Set public paths
-app.set('public', path.join(__dirname, 'public'));
-
 //	Add cors to make jQuery API requests
 app.use(cors());
 
 //	Check for HTTPS
 app.use(force_https);
-
-//	Expose the public folder to the world
-app.use(express.static(path.join(__dirname, 'public')));
 
 //	Remove the information about what type of framework is the site running on
 app.disable('x-powered-by');
@@ -38,7 +31,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 //////////////////////////////////////////////////////////////////////////////
 
 app.use('/api', require('./routes/index'));
-app.use('/video', require('./routes/video'));
+// app.use('/video', require('./routes/video'));
 
 //////////////////////////////////////////////////////////////////////////////
 
@@ -102,5 +95,9 @@ function force_https(req, res, next) {
   //	2. 	If the protocol is already HTTPS the, we just keep going.
   next();
 }
+
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => console.log(`server started on port ${PORT}`));
 
 module.exports = app;
