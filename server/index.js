@@ -1,4 +1,3 @@
-const path = require('path');
 const cors = require('cors');
 const logger = require('morgan');
 const express = require('express');
@@ -10,17 +9,11 @@ const app = express();
 // Set global variable
 global._ = _;
 
-//  Set public paths
-app.set('public', path.join(__dirname, 'public'));
-
 //	Add cors to make jQuery API requests
 app.use(cors());
 
 //	Check for HTTPS
-app.use(force_https);
-
-//	Expose the public folder to the world
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use(force_https);
 
 //	Remove the information about what type of framework is the site running on
 app.disable('x-powered-by');
@@ -38,7 +31,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 //////////////////////////////////////////////////////////////////////////////
 
 app.use('/api', require('./routes/index'));
-app.use('/video', require('./routes/video'));
 
 //////////////////////////////////////////////////////////////////////////////
 
@@ -88,19 +80,23 @@ app.use(function(err, req, res, next) {
 //
 
 //	Check if the connection is secure, if not, redirect to a secure one.
-function force_https(req, res, next) {
-  //	1. 	Redirect only in the production environment
-  if (process.env.NODE_ENV == 'production') {
-    //	1. 	Check what protocol are we using
-    if (req.headers['x-forwarded-proto'] !== 'https') {
-      //	-> 	Redirect the user to the same URL that he requested, but
-      //		with HTTPS instead of HTTP
-      return res.redirect('https://' + req.get('host') + req.url);
-    }
-  }
+// function force_https(req, res, next) {
+//   //	1. 	Redirect only in the production environment
+//   if (process.env.NODE_ENV == 'production') {
+//     //	1. 	Check what protocol are we using
+//     if (req.headers['x-forwarded-proto'] !== 'https') {
+//       //	-> 	Redirect the user to the same URL that he requested, but
+//       //		with HTTPS instead of HTTP
+//       return res.redirect('https://' + req.get('host') + req.url);
+//     }
+//   }
 
-  //	2. 	If the protocol is already HTTPS the, we just keep going.
-  next();
-}
+//   //	2. 	If the protocol is already HTTPS the, we just keep going.
+//   next();
+// }
+
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => console.log(`server started on port ${PORT}`));
 
 module.exports = app;

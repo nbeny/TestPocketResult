@@ -34,33 +34,20 @@ git clone https://github.com/nbeny/TestPocketResult .
 
 # Client side
 
-- Run `npm i`
-- Run `npm run start`
+- Run `cd client` - go to client entry folder.
+- Run `npm i` - install dependencies.
+- Run `npm run start` - runs the app react.
 
 # Server side
 
-- Run `npm i`
-- Run `npm run test`
-- Run `npm run lint`
-- Run `npm run start`
-- run `npm run dev`
+- Run `cd server` - go to server entry folder.
+- Run `npm i` - install dependencies.
+- Run `npm run test` - start the server with node.
+- Run `npm run lint` - start the server with nodemon.
+- Run `npm run start` - test mocha on api routes. the test are in the folder tests.
+- run `npm run dev` - test javascript linter on server side.
 
 Now you can navigate to my documentation (https://nbeny.github.io/TestPocketResult/), pick any component and place within your project.
-
-# Available commands
-
-# Client side
-
-- npm i - install dependencies.
-- npm run start - runs the app react.
-
-# Server side
-
-- npm i - install dependencies.
-- npm run start - start the server with node.
-- npm run dev - start the server with nodemon.
-- npm run test - test mocha on api routes. the test are in the folder tests.
-- npm run lint - test javascript linter on server side.
 
 # PRO version:
 
