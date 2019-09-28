@@ -67,10 +67,19 @@ const get_handwriting = async (req, res) => {
     },
     async function(error, response) {
       try {
-        const obj = JSON.parse(response.body);
-        res.status(200).json(obj);
+        console.log(response.caseless.dict['content-type']);
+        const content = global._.split(
+          response.caseless.dict['content-type'],
+          ';'
+        );
+        if (content[0] === 'application/pdf') {
+          return res.status(200).send(response.body);
+        } else if (content[0] === 'application/json') {
+          const json = JSON.parse(response.body);
+          return res.status(429).json(json);
+        }
       } catch (err) {
-        res.status(429).json(error);
+        return res.status(500).json(error);
       }
     }
   );
@@ -320,7 +329,7 @@ const get_render_pdf = async (req, res) => {
           response.caseless.dict['content-type'],
           ';'
         );
-        if (content[0] === 'image/png') {
+        if (content[0] === 'application/pdf') {
           return res.status(200).send(response.body);
         } else if (content[0] === 'application/json') {
           const json = JSON.parse(response.body);

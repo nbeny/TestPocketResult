@@ -13,4 +13,9 @@ router.get('/', handwriting.get_handwriting);
 // @access  Public
 router.get('/png', handwriting.get_render_png);
 
+// @route   GET api/render_pdf
+// @desc    get pdf with format
+// @access  Public
+router.get('/pdf', handwriting.get_render_pdf);
+
 module.exports = router;
