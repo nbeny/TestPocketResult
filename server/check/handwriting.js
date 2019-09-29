@@ -9,4 +9,4 @@ const order_by = [
   'rating_character_width'
 ];
 
-module.exports = order_by;
+module.exports.order_by = order_by;
