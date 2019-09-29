@@ -32,6 +32,8 @@ All fully responsive. All compatible with different browsers.
 git clone https://github.com/nbeny/TestPocketResult .
 ```
 
+Open 2 terminals.
+
 # Client side
 
 - Run `cd client` - go to client entry folder.
