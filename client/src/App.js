@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PersistentDrawerLeft from './components/layout/PersistentDrawerLeft';
 
 import HandWritingState from './context/handwriting/HandWritingState';

@@ -14,7 +14,7 @@ import {
   GET_RENDER_PDF_FAIL
 } from './Types';
 
-const HandWritingState = async props => {
+const HandWritingState = props => {
   const initialState = {
     handwriting_id: null,
     handwritings: null,

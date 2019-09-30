@@ -137,7 +137,7 @@ const get_render_png = async (req, res) => {
     line_spacing_variance,
     word_spacing_variance,
     random_seed
-  } = req.query;
+  } = req.body;
 
   // check data
   if (!handwriting_id || !text) {
